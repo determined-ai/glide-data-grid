@@ -101,7 +101,6 @@ type Props = Partial<
         | "onCellFocused"
         | "onContextMenu"
         | "onDragEnd"
-        | "onMouseDown"
         | "onMouseMove"
         | "onMouseUp"
         | "onSearchResultsChanged"
@@ -783,6 +782,7 @@ const DataEditorImpl: React.ForwardRefRenderFunction<DataEditorRef, DataEditorPr
         headerHeight: headerHeightIn = 36,
         groupHeaderHeight: groupHeaderHeightIn = headerHeightIn,
         theme: themeIn,
+        onMouseDown
     } = p;
 
     const minColumnWidth = Math.max(minColumnWidthIn, 20);
@@ -1817,8 +1817,9 @@ const DataEditorImpl: React.ForwardRefRenderFunction<DataEditorRef, DataEditorPr
             time: number;
             location: Item;
         }>();
-    const onMouseDown = React.useCallback(
+    const onMouseDownImpl = React.useCallback(
         (args: GridMouseEventArgs) => {
+            onMouseDown?.(args)
             isPrevented.current = false;
             touchDownArgs.current = visibleRegionRef.current;
             if (args.button !== 0 && args.button !== 1) {
@@ -3625,7 +3626,7 @@ const DataEditorImpl: React.ForwardRefRenderFunction<DataEditorRef, DataEditorPr
                     onMouseMove={onMouseMoveImpl}
                     onKeyDown={onKeyDown}
                     onKeyUp={onKeyUpIn}
-                    onMouseDown={onMouseDown}
+                    onMouseDown={onMouseDownImpl}
                     onMouseUp={onMouseUp}
                     onDragOverCell={onDragOverCell}
                     onDrop={onDrop}
