@@ -2165,8 +2165,8 @@ const DataEditorImpl: React.ForwardRefRenderFunction<DataEditorRef, DataEditorPr
                 ...args,
                 location: [args.location[0] - rowMarkerOffset, args.location[1]] as any,
             };
-            onMouseMove?.(a);
             console.log("onMouseMoveImpl args:")
+            onMouseMove?.(a);
             console.log(args)
             if (args?.kind === "header") {
                 console.log("Header shown")

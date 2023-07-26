@@ -218,11 +218,11 @@ export interface DataGridProps {
     readonly drawFocusRing: boolean | undefined;
 
     readonly dragAndDropState:
-        | {
-              src: number;
-              dest: number;
-          }
-        | undefined;
+    | {
+        src: number;
+        dest: number;
+    }
+    | undefined;
 
     /**
      * Experimental features
@@ -230,17 +230,17 @@ export interface DataGridProps {
      * @experimental
      */
     readonly experimental:
-        | {
-              readonly paddingRight?: number;
-              readonly paddingBottom?: number;
-              readonly enableFirefoxRescaling?: boolean;
-              readonly isSubGrid?: boolean;
-              readonly strict?: boolean;
-              readonly scrollbarWidthOverride?: number;
-              readonly hyperWrapping?: boolean;
-              readonly renderStrategy?: "single-buffer" | "double-buffer" | "direct";
-          }
-        | undefined;
+    | {
+        readonly paddingRight?: number;
+        readonly paddingBottom?: number;
+        readonly enableFirefoxRescaling?: boolean;
+        readonly isSubGrid?: boolean;
+        readonly strict?: boolean;
+        readonly scrollbarWidthOverride?: number;
+        readonly hyperWrapping?: boolean;
+        readonly renderStrategy?: "single-buffer" | "double-buffer" | "direct";
+    }
+    | undefined;
 
     /**
      * Additional header icons for use by `GridColumn`.
@@ -820,14 +820,14 @@ const DataGrid: React.ForwardRefRenderFunction<DataGridRef, DataGridProps> = (p,
     const cursor = isDragging
         ? "grabbing"
         : canDrag || isResizing
-        ? "col-resize"
-        : overFill || isFilling
-        ? "crosshair"
-        : cursorOverride !== undefined
-        ? cursorOverride
-        : headerHovered || clickableInnerCellHovered || editableBoolHovered || groupHeaderHovered
-        ? "pointer"
-        : "default";
+            ? "col-resize"
+            : overFill || isFilling
+                ? "crosshair"
+                : cursorOverride !== undefined
+                    ? cursorOverride
+                    : headerHovered || clickableInnerCellHovered || editableBoolHovered || groupHeaderHovered
+                        ? "pointer"
+                        : "default";
     const style = React.useMemo(
         () => ({
             // width,
@@ -1061,8 +1061,9 @@ const DataGrid: React.ForwardRefRenderFunction<DataGridRef, DataGridProps> = (p,
         (ev: MouseEvent) => {
             const canvas = ref.current;
             if (canvas === null) return;
-
+            console.log("OnMouseMoveImpl")
             const args = getMouseArgsForPosition(canvas, ev.clientX, ev.clientY, ev);
+            console.log(args)
             if (!isSameItem(args, hoveredRef.current)) {
                 onItemHovered?.(args);
                 setHoveredItemInfo(
@@ -1095,9 +1096,9 @@ const DataGrid: React.ForwardRefRenderFunction<DataGridRef, DataGridProps> = (p,
                 assert(sb !== undefined);
                 setOverFill(
                     x >= sb.x + sb.width - 6 &&
-                        x <= sb.x + sb.width &&
-                        y >= sb.y + sb.height - 6 &&
-                        y <= sb.y + sb.height
+                    x <= sb.x + sb.width &&
+                    y >= sb.y + sb.height - 6 &&
+                    y <= sb.y + sb.height
                 );
             } else {
                 setOverFill(false);
@@ -1349,7 +1350,8 @@ const DataGrid: React.ForwardRefRenderFunction<DataGridRef, DataGridProps> = (p,
             }
 
             const args = getMouseArgsForPosition(canvas, event.clientX, event.clientY);
-
+            console.log("onDragOver")
+            console.log(args)
             const [rawCol, row] = args.location;
             const col = rawCol - (firstColAccessible ? 0 : 1);
             const [activeCol, activeRow] = activeDropTarget.current ?? [];
