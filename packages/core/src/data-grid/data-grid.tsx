@@ -1061,8 +1061,10 @@ const DataGrid: React.ForwardRefRenderFunction<DataGridRef, DataGridProps> = (p,
         (ev: MouseEvent) => {
             const canvas = ref.current;
             if (canvas === null) return;
+            // eslint-disable-next-line no-console
             console.log("OnMouseMoveImpl")
             const args = getMouseArgsForPosition(canvas, ev.clientX, ev.clientY, ev);
+            // eslint-disable-next-line no-console
             console.log(args)
             if (!isSameItem(args, hoveredRef.current)) {
                 onItemHovered?.(args);
@@ -1350,7 +1352,9 @@ const DataGrid: React.ForwardRefRenderFunction<DataGridRef, DataGridProps> = (p,
             }
 
             const args = getMouseArgsForPosition(canvas, event.clientX, event.clientY);
+            // eslint-disable-next-line no-console
             console.log("onDragOver")
+            // eslint-disable-next-line no-console
             console.log(args)
             const [rawCol, row] = args.location;
             const col = rawCol - (firstColAccessible ? 0 : 1);
