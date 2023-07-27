@@ -100,6 +100,7 @@ type Props = Partial<
         | "onCanvasFocused"
         | "onCellFocused"
         | "onContextMenu"
+        | "onMouseDown"
         | "onDragEnd"
         | "onMouseMove"
         | "onMouseUp"
@@ -782,7 +783,7 @@ const DataEditorImpl: React.ForwardRefRenderFunction<DataEditorRef, DataEditorPr
         headerHeight: headerHeightIn = 36,
         groupHeaderHeight: groupHeaderHeightIn = headerHeightIn,
         theme: themeIn,
-        onMouseDown
+        // onMouseDown
     } = p;
 
     const minColumnWidth = Math.max(minColumnWidthIn, 20);
@@ -1817,9 +1818,9 @@ const DataEditorImpl: React.ForwardRefRenderFunction<DataEditorRef, DataEditorPr
             time: number;
             location: Item;
         }>();
-    const onMouseDownImpl = React.useCallback(
+    const onMouseDown = React.useCallback(
         (args: GridMouseEventArgs) => {
-            onMouseDown?.(args)
+            // onMouseDown?.(args)
             isPrevented.current = false;
             touchDownArgs.current = visibleRegionRef.current;
             if (args.button !== 0 && args.button !== 1) {
@@ -1849,7 +1850,7 @@ const DataEditorImpl: React.ForwardRefRenderFunction<DataEditorRef, DataEditorPr
                 handleSelect(args);
             }
         },
-        [gridSelection, handleSelect, onMouseDown]
+        [gridSelection, handleSelect]
     );
 
     const [renameGroup, setRenameGroup] =
@@ -2167,13 +2168,13 @@ const DataEditorImpl: React.ForwardRefRenderFunction<DataEditorRef, DataEditorPr
                 location: [args.location[0] - rowMarkerOffset, args.location[1]] as any,
             };
             // eslint-disable-next-line no-console
-            console.log("onMouseMoveImpl args:")
+            // console.log("onMouseMoveImpl args:")
             onMouseMove?.(a);
-            // eslint-disable-next-line no-console
-            console.log(args)
+            // // eslint-disable-next-line no-console
+            // console.log(args)
             if (args?.kind === "header") {
                 // eslint-disable-next-line no-console
-                console.log("Header shown")
+                // console.log("Header shown")
                 setScrollDir([
                     0,
                     0
@@ -3629,7 +3630,7 @@ const DataEditorImpl: React.ForwardRefRenderFunction<DataEditorRef, DataEditorPr
                     onMouseMove={onMouseMoveImpl}
                     onKeyDown={onKeyDown}
                     onKeyUp={onKeyUpIn}
-                    onMouseDown={onMouseDownImpl}
+                    onMouseDown={onMouseDown}
                     onMouseUp={onMouseUp}
                     onDragOverCell={onDragOverCell}
                     onDrop={onDrop}
