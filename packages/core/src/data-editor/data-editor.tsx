@@ -1820,7 +1820,6 @@ const DataEditorImpl: React.ForwardRefRenderFunction<DataEditorRef, DataEditorPr
         }>();
     const onMouseDown = React.useCallback(
         (args: GridMouseEventArgs) => {
-            // onMouseDown?.(args)
             isPrevented.current = false;
             touchDownArgs.current = visibleRegionRef.current;
             if (args.button !== 0 && args.button !== 1) {
@@ -2167,14 +2166,8 @@ const DataEditorImpl: React.ForwardRefRenderFunction<DataEditorRef, DataEditorPr
                 ...args,
                 location: [args.location[0] - rowMarkerOffset, args.location[1]] as any,
             };
-            // eslint-disable-next-line no-console
-            // console.log("onMouseMoveImpl args:")
             onMouseMove?.(a);
-            // // eslint-disable-next-line no-console
-            // console.log(args)
             if (args?.kind === "header") {
-                // eslint-disable-next-line no-console
-                // console.log("Header shown")
                 setScrollDir([
                     0,
                     0
