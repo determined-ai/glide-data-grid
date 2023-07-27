@@ -7,21 +7,10 @@
         "plugin:import/typescript",
         "plugin:react-hooks/recommended"
     ],
-    "settings": {
-        "react": {
-            "version": "detect"
-        }
-    },
-    "plugins": [
-        "react",
-        "@typescript-eslint",
-        "import"
-    ],
+    "plugins": ["react", "@typescript-eslint", "import"],
     "parser": "@typescript-eslint/parser",
     "parserOptions": {
-        "project": [
-            "./tsconfig.json"
-        ]
+        "project": ["./tsconfig.json"]
     },
     "rules": {
         "no-console": "warn",
@@ -54,9 +43,7 @@
     },
     "overrides": [
         {
-            "files": [
-                "*.ts"
-            ],
+            "files": ["*.ts"],
             "rules": {
                 "@typescript-eslint/strict-boolean-expressions": "error"
             }
