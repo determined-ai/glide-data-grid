@@ -2181,7 +2181,6 @@ const DataEditorImpl: React.ForwardRefRenderFunction<DataEditorRef, DataEditorPr
                     ? undefined
                     : args.scrollEdge;
             });
-
         },
         [mouseState, onMouseMove, rowMarkerOffset]
     );
