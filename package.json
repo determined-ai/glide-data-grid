@@ -1,6 +1,6 @@
 {
     "name": "@hpe.com/root",
-    "version": "5.2.1-test-1274-16",
+    "version": "5.2.1-test-1274-17",
     "scripts": {
         "start": "npm run storybook",
         "version": "./update-version.sh",
