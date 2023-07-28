@@ -783,7 +783,6 @@ const DataEditorImpl: React.ForwardRefRenderFunction<DataEditorRef, DataEditorPr
         headerHeight: headerHeightIn = 36,
         groupHeaderHeight: groupHeaderHeightIn = headerHeightIn,
         theme: themeIn,
-        // onMouseDown
     } = p;
 
     const minColumnWidth = Math.max(minColumnWidthIn, 20);
