@@ -1839,8 +1839,6 @@ const DataEditorImpl: React.ForwardRefRenderFunction<DataEditorRef, DataEditorPr
             };
 
             if (args?.kind === "header") {
-                // eslint-disable-next-line no-console
-                console.log("beginning to drag header");
                 isActivelyDraggingHeader.current = true;
             }
 
@@ -2177,8 +2175,6 @@ const DataEditorImpl: React.ForwardRefRenderFunction<DataEditorRef, DataEditorPr
                 location: [args.location[0] - rowMarkerOffset, args.location[1]] as any,
             };
             onMouseMove?.(a);
-            // eslint-disable-next-line no-console
-            console.log("is dragging header:", isActivelyDraggingHeader.current)
             setScrollDir(cv => {
                 if (isActivelyDraggingHeader.current) return [args.scrollEdge[0], 0];
                 if (args.scrollEdge[0] === cv?.[0] && args.scrollEdge[1] === cv[1]) return cv;
