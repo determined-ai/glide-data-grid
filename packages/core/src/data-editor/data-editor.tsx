@@ -1817,6 +1817,9 @@ const DataEditorImpl: React.ForwardRefRenderFunction<DataEditorRef, DataEditorPr
             time: number;
             location: Item;
         }>();
+
+    const isActivelyDraggingHeader = React.useRef(false);
+
     const onMouseDown = React.useCallback(
         (args: GridMouseEventArgs) => {
             isPrevented.current = false;
@@ -1833,6 +1836,10 @@ const DataEditorImpl: React.ForwardRefRenderFunction<DataEditorRef, DataEditorPr
                 time,
                 location: args.location,
             };
+
+            if (args?.kind === "header") {
+                isActivelyDraggingHeader.current = true;
+            }
 
             const fh = args.kind === "cell" && args.isFillHandle;
 
@@ -1993,6 +2000,7 @@ const DataEditorImpl: React.ForwardRefRenderFunction<DataEditorRef, DataEditorPr
             const mouse = mouseState;
             setMouseState(undefined);
             setScrollDir(undefined);
+            isActivelyDraggingHeader.current = false;
 
             if (isOutside) return;
 
@@ -2167,6 +2175,7 @@ const DataEditorImpl: React.ForwardRefRenderFunction<DataEditorRef, DataEditorPr
             };
             onMouseMove?.(a);
             setScrollDir(cv => {
+                if (isActivelyDraggingHeader.current) return [args.scrollEdge[0], 0];
                 if (args.scrollEdge[0] === cv?.[0] && args.scrollEdge[1] === cv[1]) return cv;
                 return mouseState === undefined || (mouseDownData.current?.location[0] ?? 0) < rowMarkerOffset
                     ? undefined
