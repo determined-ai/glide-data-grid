@@ -1,6 +1,6 @@
 {
-  "name": "@hpe.com/root",
-  "version": "5.2.1",
+  "name": "@hpe.com/glide-data-grid",
+  "version": "5.2.7",
   "scripts": {
     "start": "npm run storybook",
     "version": "./update-version.sh",
